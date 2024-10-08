@@ -1,0 +1,129 @@
+service : () -> {
+  get_a_group : (record { nameofgroup : text }) -> (
+      variant {
+        Ok : record {
+          id : principal;
+          members : vec record {
+            regestrationNumber : principal;
+            name : text;
+            specialist : text;
+            location : text;
+          };
+          country : text;
+          name : text;
+          created_at : nat64;
+          contactnumber : text;
+          groupoficialemail : text;
+          services : text;
+        };
+        Err : variant {
+          GroupNotAvailble : text;
+          GroupAlreadyRegistered : text;
+          MissingCredentials : text;
+          ServicesNotAvailable : text;
+          NotAMember : text;
+          FailedToRegisterGroup : text;
+        };
+      },
+    ) query;
+  get_a_group_on_Services_offering : (record { "service" : text }) -> (
+      variant {
+        Ok : record {
+          id : principal;
+          members : vec record {
+            regestrationNumber : principal;
+            name : text;
+            specialist : text;
+            location : text;
+          };
+          country : text;
+          name : text;
+          created_at : nat64;
+          contactnumber : text;
+          groupoficialemail : text;
+          services : text;
+        };
+        Err : variant {
+          GroupNotAvailble : text;
+          GroupAlreadyRegistered : text;
+          MissingCredentials : text;
+          ServicesNotAvailable : text;
+          NotAMember : text;
+          FailedToRegisterGroup : text;
+        };
+      },
+    ) query;
+  getallgroups : () -> (
+      vec record {
+        id : principal;
+        members : vec record {
+          regestrationNumber : principal;
+          name : text;
+          specialist : text;
+          location : text;
+        };
+        country : text;
+        name : text;
+        created_at : nat64;
+        contactnumber : text;
+        groupoficialemail : text;
+        services : text;
+      },
+    ) query;
+  member_leave_group : (
+      record { regestrationNumber : principal; name : text; groupname : text },
+    ) -> (
+      variant {
+        Ok : text;
+        Err : variant {
+          GroupNotAvailble : text;
+          GroupAlreadyRegistered : text;
+          MissingCredentials : text;
+          ServicesNotAvailable : text;
+          NotAMember : text;
+          FailedToRegisterGroup : text;
+        };
+      },
+    );
+  registerGroup : (
+      record {
+        country : text;
+        name : text;
+        contactnumber : text;
+        groupoficialemail : text;
+        services : text;
+      },
+    ) -> (
+      variant {
+        Ok : text;
+        Err : variant {
+          GroupNotAvailble : text;
+          GroupAlreadyRegistered : text;
+          MissingCredentials : text;
+          ServicesNotAvailable : text;
+          NotAMember : text;
+          FailedToRegisterGroup : text;
+        };
+      },
+    );
+  volunteer : (
+      record {
+        nameofgroup : text;
+        name : text;
+        specialist : text;
+        location : text;
+      },
+    ) -> (
+      variant {
+        Ok : text;
+        Err : variant {
+          GroupNotAvailble : text;
+          GroupAlreadyRegistered : text;
+          MissingCredentials : text;
+          ServicesNotAvailable : text;
+          NotAMember : text;
+          FailedToRegisterGroup : text;
+        };
+      },
+    ) query;
+}

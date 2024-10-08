@@ -1,0 +1,23 @@
+service : {
+  registerGroup : (
+      record {
+        country : text;
+        name : text;
+        contactnumber : text;
+        groupoficialemail : text;
+        services : text;
+      },
+    ) -> (
+      variant {
+        Ok : text;
+        Err : variant {
+          GroupNotAvailble : text;
+          GroupAlreadyRegistered : text;
+          MissingCredentials : text;
+          ServicesNotAvailable : text;
+          NotAMember : text;
+          FailedToRegisterGroup : text;
+        };
+      },
+    );
+}
